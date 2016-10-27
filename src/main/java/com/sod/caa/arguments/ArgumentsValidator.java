@@ -1,9 +1,10 @@
 package com.sod.caa.arguments;
 
+import com.sod.caa.exceptions.CAAInputException;
 import org.apache.commons.cli.*;
 
 public class ArgumentsValidator {
-    public static CommandLine validateArguments(String args[]) {
+    public static CommandLine validateArguments(String args[]) throws CAAInputException {
         CommandLineParser parser = new DefaultParser();
         CommandLine line = null;
         try {
@@ -11,8 +12,8 @@ public class ArgumentsValidator {
             addMandatoryArguments(options);
             line = parser.parse(options, args);
         }
-        catch(ParseException exp) {
-            System.err.println("Error: " + exp.getMessage());
+        catch(ParseException e) {
+            throw new CAAInputException(e);
         }
         return line;
     }
@@ -20,6 +21,7 @@ public class ArgumentsValidator {
     private static void addMandatoryArguments(Options options) {
         options.addOption(ArgumentsList.getDefinitionsInputPath());
         options.addOption(ArgumentsList.getDefinitionsInputType());
+        options.addOption(ArgumentsList.getInputPath());
     }
 
     private static void addOptionalArguments(ArgumentsList args, Options options) {

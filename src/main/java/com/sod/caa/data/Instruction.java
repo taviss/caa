@@ -1,4 +1,6 @@
-package com.sod.caa.definitions;
+package com.sod.caa.data;
+
+import com.sod.caa.definitions.InstructionType;
 
 import java.util.ArrayList;
 import java.util.List;
