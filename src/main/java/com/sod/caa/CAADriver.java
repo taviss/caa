@@ -48,7 +48,7 @@ public class CAADriver {
         inputFile = fileLoader.loadFile(arguments);
     }
 
-    private void analyzeInput() {
+    private void analyzeInput() throws CAAInputException {
         fileAnalyzer.analyzeFile(inputFile);
     }
 }
