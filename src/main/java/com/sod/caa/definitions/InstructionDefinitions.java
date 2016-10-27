@@ -4,7 +4,6 @@ import javax.xml.bind.annotation.*;
 import java.util.List;
 
 @XmlRootElement(name = "instructions")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class InstructionDefinitions {
     private List<InstructionDefinitionEntry> definitionEntryList;
 

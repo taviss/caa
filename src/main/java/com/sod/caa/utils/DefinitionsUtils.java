@@ -22,7 +22,7 @@ public class DefinitionsUtils {
     }
 
     public static InstructionDefinitions unmarshalDefinitions(String path) throws CAAInputException {
-        InstructionDefinitions instructionDefinitions = null;
+        InstructionDefinitions instructionDefinitions;
         try {
             File file = new File(path);
             JAXBContext jaxbContext = getDefJAXBContext();
@@ -34,7 +34,7 @@ public class DefinitionsUtils {
             //unmarshaller.setSchema(schema);
             instructionDefinitions = (InstructionDefinitions) unmarshaller.unmarshal(file);
         } catch (JAXBException e) {
-            throw new CAAInputException(e.getMessage());
+            throw new CAAInputException(e);
         }
         return instructionDefinitions;
     }

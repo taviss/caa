@@ -29,6 +29,6 @@ public class CAADriver {
 
     private void loadDefinitions() throws CAAInputException{
         InstructionDefinitionsLoader instructionDefinitionsLoader = new InstructionDefinitionsLoader();
-        instructionDefinitions = instructionDefinitionsLoader.loadDefinitions(arguments.getOptionValue(ArgumentsList.getDefinitionsInputPath().getOpt()));
+        instructionDefinitions = instructionDefinitionsLoader.loadDefinitions(arguments);
     }
 }
