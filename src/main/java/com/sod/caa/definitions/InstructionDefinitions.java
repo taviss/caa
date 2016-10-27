@@ -1,38 +1,19 @@
 package com.sod.caa.definitions;
 
 import javax.xml.bind.annotation.*;
+import java.util.List;
 
 @XmlRootElement(name = "instructions")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class InstructionDefinitions {
-    @XmlAttribute(name = "type")
-    private int type;
-    @XmlAttribute(name = "operands")
-    private int noOfOperands;
-    @XmlValue
-    private String instructionString;
+    private List<InstructionDefinitionEntry> definitionEntryList;
 
-    public int getType() {
-        return type;
+    public List<InstructionDefinitionEntry> getDefinitionEntryList() {
+        return definitionEntryList;
     }
 
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public int getNoOfOperands() {
-        return noOfOperands;
-    }
-
-    public void setNoOfOperands(int noOfOperands) {
-        this.noOfOperands = noOfOperands;
-    }
-
-    public String getInstructionString() {
-        return instructionString;
-    }
-
-    public void setInstructionString(String instructionString) {
-        this.instructionString = instructionString;
+    @XmlElement(name = "instruction")
+    public void setDefinitionEntryList(List<InstructionDefinitionEntry> definitionEntryList) {
+        this.definitionEntryList = definitionEntryList;
     }
 }
