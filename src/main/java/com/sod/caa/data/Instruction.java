@@ -6,19 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Instruction {
-    private InstructionType type;
+    private int type;
     private List<String> operands;
+    private String instructionString;
 
-    public Instruction(InstructionType type) {
+    public Instruction(int type) {
         this.type = type;
         this.operands = new ArrayList<String>();
     }
 
-    public InstructionType getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(InstructionType type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -28,5 +29,13 @@ public class Instruction {
 
     public void setOperands(List<String> operands) {
         this.operands = operands;
+    }
+
+    public String getInstructionString() {
+        return instructionString;
+    }
+
+    public void setInstructionString(String instructionString) {
+        this.instructionString = instructionString;
     }
 }

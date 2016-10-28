@@ -9,7 +9,7 @@
     </appender>
 
     <appender name="file" class="org.apache.log4j.FileAppender">
-        <param name="File" value="atf.log"/>
+        <param name="File" value="caa.log"/>
         <param name="Append" value="true"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d %-5.5p %25.25c{1} | %m %n"/>
