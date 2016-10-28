@@ -4,6 +4,7 @@ import com.sod.caa.definitions.InstructionDefinitionEntry;
 import com.sod.caa.definitions.InstructionDefinitions;
 import com.sod.caa.definitions.InstructionType;
 import com.sod.caa.exceptions.CAAInputException;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,13 +14,21 @@ import java.util.regex.Pattern;
 
 public class FileAnalyzer {
     private InstructionDefinitions instructionDefinitions;
+    private Logger logger = Logger.getLogger(FileAnalyzer.class);
 
     public List<Instruction> analyzeFile(File file) throws CAAInputException {
         List<Instruction> instructions = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                instructions.add(analyzeLine(line));
+                if(!line.startsWith(";") && line.trim().length() != 0) {
+                    Instruction instruction = analyzeLine(line);
+                    if (instruction == null) {
+                        logger.warn("No definition found for line: " + line);
+                    } else {
+                        instructions.add(instruction);
+                    }
+                }
             }
             return instructions;
         } catch (IOException e) {
@@ -36,9 +45,10 @@ public class FileAnalyzer {
                     List<String> operands = new ArrayList<>();
                     String operandsRegEx = "";
                     for (int i = 0; i < definitionEntry.getNoOfOperands(); i++) {
-                        if (i == 0) operandsRegEx = definitionEntry.getInstructionString().toLowerCase() + "\\s+(\\S+)";
-                        else operandsRegEx += ",(\\S+)";
+                        if (i == 0) operandsRegEx = definitionEntry.getInstructionString().toLowerCase() + "\\s+(.+?)";
+                        else operandsRegEx += ",(.+?)";
                     }
+                    operandsRegEx += "($|\\s|;)";
                     Pattern pattern = Pattern.compile(operandsRegEx);
                     Matcher matcher = pattern.matcher(line);
                     if(matcher.find()) {
