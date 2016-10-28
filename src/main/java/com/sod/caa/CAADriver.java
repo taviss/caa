@@ -42,7 +42,7 @@ public class CAADriver {
             caaDriver.generateReport();
             logger.info("Execution ended successfully.");
         } catch (CAAInputException e) {
-            logger.error(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -61,7 +61,8 @@ public class CAADriver {
         instructions = fileAnalyzer.analyzeFile(inputFile);
     }
 
-    private void generateReport() {
+    private void generateReport() throws CAAInputException {
+        reportGenerator.setArguments(arguments);
         reportGenerator.setRunDate(new Date());
         reportGenerator.generateReport(instructionDefinitions, instructions);
     }

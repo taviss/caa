@@ -22,6 +22,7 @@ public class ArgumentsValidator {
         options.addOption(ArgumentsList.getDefinitionsInputPath());
         options.addOption(ArgumentsList.getDefinitionsInputType());
         options.addOption(ArgumentsList.getInputPath());
+        options.addOption(ArgumentsList.getReportPath());
     }
 
     private static void addOptionalArguments(ArgumentsList args, Options options) {
